@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav {
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            margin: 0 10px;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form label {
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        form input, form textarea, form button {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        form button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #45a049;
+        }
+
+        .submissions {
+            margin-top: 20px;
+        }
+
+        .submission {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .submission h3 {
+            margin: 0 0 10px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Assignment Management</h1>
+    </header>
+
+    <nav>
+        <a href="#">Create Assignment</a>
+        <a href="#submissions">View Submissions</a>
+    </nav>
+
+    <div class="container" id="create-assignment">
+        <h2>Create Assignment</h2>
+        <form id="assignment-form">
+            <label for="question">Question #</label>
+            <input type="text" id="question" name="question" placeholder="Enter Question #">
+
+            <label for="video">YouTube Video Link</label>
+            <input type="url" id="video" name="video" placeholder="Enter YouTube Video Link">
+
+            <label for="date">Date of Creation</label>
+            <input type="date" id="date" name="date">
+
+            <button type="submit">Add Assignment</button>
+        </form>
+    </div>
+
+    <div class="container submissions" id="submissions">
+        <h2>Submissions</h2>
+        <div class="submission">
+            <h2>Submissions-sample</h2>
+            <h3>Question #1</h3>
+            <p><strong>YouTube Link:</strong> <a href="https://www.youtube.com/watch?v=example" target="_blank">https://www.youtube.com/watch?v=example</a></p>
+            <p><strong>Date of Creation:</strong> 2024-12-05</p>
+        </div>
+        <!-- Additional submissions can be added here dynamically -->
+    </div>
+
+    <script>
+        document.getElementById('assignment-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const question = document.getElementById('question').value;
+            const video = document.getElementById('video').value;
+            const date = document.getElementById('date').value;
+
+            if (question && video && date) {
+                const submissionContainer = document.getElementById('submissions');
+
+                const newSubmission = document.createElement('div');
+                newSubmission.classList.add('submission');
+                newSubmission.innerHTML = `
+                    <h3>${question}</h3>
+                    <p><strong>YouTube Link:</strong> <a href="${video}" target="_blank">${video}</a></p>
+                    <p><strong>Date of Creation:</strong> ${date}</p>
+                `;
+
+                submissionContainer.appendChild(newSubmission);
+
+                // Clear the form
+                document.getElementById('assignment-form').reset();
+            } else {
+                alert('Please fill in all fields.');
+            }
+        });
+    </script>
+</body>
+</html>
